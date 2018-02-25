@@ -87,6 +87,23 @@ class ViewController: UIViewController {
         }
     }
     
+    func monitorMagneticFields() {
+        if motionManager.isMagnetometerAvailable {
+            motionManager.magnetometerUpdateInterval = interval
+            motionManager.startMagnetometerUpdates(to: OperationQueue.main, withHandler: { (magnetometer, error) in
+                if self.motionManager.isMagnetometerActive {
+                    if let field = magnetometer?.magneticField {
+                        self.magneticLabel.text = String(format:"Raw X:%10.4f Y:%10.4f Z:%10.4f", field.x, field.y, field.z)
+                        return
+                    }
+                }
+                print("Raw Magnetometer not active")
+            })
+        } else {
+            print("Magnetometer not available")
+        }
+    }
+    
     func monitorAltitude() {
         var first = true
         var firstPressure = 0.0
@@ -103,23 +120,6 @@ class ViewController: UIViewController {
             })
         } else {
             print("Altimeter not available")
-        }
-    }
-    
-    func monitorMagneticFields() {
-        if motionManager.isMagnetometerAvailable {
-            motionManager.magnetometerUpdateInterval = interval
-            motionManager.startMagnetometerUpdates(to: OperationQueue.main, withHandler: { (magnetometer, error) in
-                if self.motionManager.isMagnetometerActive {
-                    if let field = magnetometer?.magneticField {
-                        self.magneticLabel.text = String(format:"Raw X:%10.4f Y:%10.4f Z:%10.4f", field.x, field.y, field.z)
-                        return
-                    }
-                }
-                print("Raw Magnetometer not active")
-            })
-        } else {
-            print("Magnetometer not available")
         }
     }
     
@@ -141,8 +141,8 @@ class ViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        motionManager.stopDeviceMotionUpdates()
         timer.invalidate()
+        motionManager.stopDeviceMotionUpdates()
         altimeter.stopRelativeAltitudeUpdates()
         motionManager.stopMagnetometerUpdates()
     }
@@ -150,8 +150,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
     }
 
     override func didReceiveMemoryWarning() {
