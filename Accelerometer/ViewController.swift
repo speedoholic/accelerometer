@@ -27,6 +27,9 @@ class ViewController: UIViewController {
     let interval = 0.5
     var timer = Timer()
     let altimeter = CMAltimeter()
+    var altitude: CMAltitudeData?
+    var first = true
+    var firstPressure = 0.0
     let motionActivityManager = CMMotionActivityManager()
     var isSafe = true
     
@@ -81,6 +84,13 @@ class ViewController: UIViewController {
             if let deviceMotion = self.motionManager.deviceMotion {
                 self.detectMotion(deviceMotion)
             }
+            if self.motionManager.isMagnetometerActive {
+                if let field = self.motionManager.magnetometerData?.magneticField {
+                    self.magneticLabel.text = String(format:"Raw X:%10.4f Y:%10.4f Z:%10.4f", field.x, field.y, field.z)
+                }
+            }
+            self.updateAltitude()
+            print("Raw Magnetometer not active")
         })
     }
     
@@ -125,36 +135,35 @@ class ViewController: UIViewController {
     func monitorMagneticFields() {
         if motionManager.isMagnetometerAvailable {
             motionManager.magnetometerUpdateInterval = interval
-            motionManager.startMagnetometerUpdates(to: OperationQueue.main, withHandler: { (magnetometer, error) in
-                if self.motionManager.isMagnetometerActive {
-                    if let field = magnetometer?.magneticField {
-                        self.magneticLabel.text = String(format:"Raw X:%10.4f Y:%10.4f Z:%10.4f", field.x, field.y, field.z)
-                        return
-                    }
-                }
-                print("Raw Magnetometer not active")
-            })
+            motionManager.startMagnetometerUpdates()
         } else {
             print("Magnetometer not available")
         }
     }
     
     func monitorAltitude() {
-        var first = true
-        var firstPressure = 0.0
         if CMAltimeter.isRelativeAltitudeAvailable() {
-            altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main, withHandler: { (altitude, error) in
+            let queue = OperationQueue()
+            altimeter.startRelativeAltitudeUpdates(to: queue, withHandler: { (altitude, error) in
                 if let altitude = altitude {
-                    let pressure = Double(truncating: altitude.pressure)
-                    let relativeAlitude = Double(truncating: altitude.relativeAltitude)
-                    firstPressure = first ? pressure : firstPressure
-                    first = false
-                    let pressureChange = firstPressure - pressure
-                    self.altitudeLabel.text = "Pressure Change: \(pressureChange), Altitude Change: \(relativeAlitude)"
+                    self.altitude = altitude
                 }
             })
         } else {
             print("Altimeter not available")
+        }
+    }
+    
+    func updateAltitude() {
+        if CMAltimeter.isRelativeAltitudeAvailable() {
+            if let altitude = self.altitude {
+                let pressure = Double(truncating: altitude.pressure)
+                let relativeAlitude = Double(truncating: altitude.relativeAltitude)
+                firstPressure = first ? pressure : firstPressure
+                first = false
+                let pressureChange = firstPressure - pressure
+                self.altitudeLabel.text = "Pressure Change: \(pressureChange), Altitude Change: \(relativeAlitude)"
+            }
         }
     }
     
