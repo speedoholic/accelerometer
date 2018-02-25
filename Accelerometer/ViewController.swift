@@ -39,7 +39,8 @@ class ViewController: UIViewController {
     
     func startSafetyCheck() {
         if CMMotionActivityManager.isActivityAvailable() {
-            motionActivityManager.startActivityUpdates(to: OperationQueue.main, withHandler: { (motionActivity) in
+            let queue = OperationQueue()
+            motionActivityManager.startActivityUpdates(to: queue, withHandler: { (motionActivity) in
                 if let activity = motionActivity {
                     switch activity.confidence {
                     case .high:
