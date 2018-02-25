@@ -7,12 +7,16 @@
 //
 #include "Statistics.hpp"
 #include <iostream>
+#include <numeric>
+
 using namespace std;
 void CPP::hello_cpp(const std::string& name) {
-    func();
     cout << "Hello " << name << " in C++" << endl;
 }
-
-void CPP::func () {
-    puts("This is a func()");
+template <int N>
+double CPP::mean_array( double ( & array )[N] )
+{
+    return std::accumulate( array, array + N, 0.0) / (double)(N);
 }
+
+

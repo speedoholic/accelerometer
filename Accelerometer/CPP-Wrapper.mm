@@ -12,9 +12,15 @@
 
 @implementation CPP_Wrapper
 
+CPP cpp;
+
 - (void)hello_cpp_wrapped:(NSString *)name {
-    CPP cpp;
     cpp.hello_cpp([name cStringUsingEncoding:NSUTF8StringEncoding]);
 }
+
+- (double)mean_array_wrapped:(double[])array {
+    return 0.0;
+}
+
 
 @end

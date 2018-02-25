@@ -24,13 +24,23 @@ public enum Motion {
 class ViewController: UIViewController {
 
     let motionManager = CMMotionManager()
+    var motion = CMDeviceMotion()
     let interval = 1.0 / 20.0  // 20 Hz
     var timer = Timer()
+    var secondaryTimer = Timer()
     let cppWrapper = CPP_Wrapper()
+    var accDictionary = [String:Double]()
+    var xArray = [Double]()
+    var yArray = [Double]()
+    var zArray = [Double]()
     
-    @IBOutlet weak var valueLabel: UILabel!
-    @IBOutlet weak var altitudeLabel: UILabel!
-    @IBOutlet weak var magneticLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var maxLabel: UILabel!
+    @IBOutlet weak var minLabel: UILabel!
+    @IBOutlet weak var meanLabel: UILabel!
+    @IBOutlet weak var medianLabel: UILabel!
+    @IBOutlet weak var deviationLabel: UILabel!
+    
     
     func isSensorAvailable() -> Bool {
         if !motionManager.isAccelerometerAvailable {
@@ -44,17 +54,30 @@ class ViewController: UIViewController {
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true, block: { (timer) in
             if let deviceMotion = self.motionManager.deviceMotion {
-                self.detectMotion(deviceMotion)
+                self.motion = deviceMotion
+                self.detectMotion()
             }
+        })
+        secondaryTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
+            self.countLabel.text = String(format:"COUNT X:%4.2f Y:%4.2f Z:%4.2f",self.xArray.count, self.yArray.count, self.zArray.count)
+            self.maxLabel.text = String(format:"MAX X:%4.2f Y:%4.2f Z:%4.2f",self.xArray.max()!, self.yArray.max()!, self.zArray.max()!)
+            self.minLabel.text = String(format:"MIN X:%4.2f Y:%4.2f Z:%4.2f",self.xArray.min()!, self.yArray.min()!, self.zArray.min()!)
+            
+            
+            self.xArray = [Double]()
+            self.yArray = [Double]()
+            self.zArray = [Double]()
         })
     }
     
-    func detectMotion(_ deviceMotion: CMDeviceMotion) {
-        let acceleration = deviceMotion.userAcceleration
-        self.valueLabel.text = String(format:"X:%7.4f Y:%7.4f Z:%7.4f",acceleration.x, acceleration.y, acceleration.z)
-        print(self.valueLabel.text!)
+    func detectMotion() {
+        let acceleration = self.motion.userAcceleration
+        accDictionary = ["date":Date().timeIntervalSince1970, "x":acceleration.x, "y":acceleration.y, "z":acceleration.z]
+        xArray.append(acceleration.x)
+        yArray.append(acceleration.y)
+        zArray.append(acceleration.z)
         
-        let rotation = deviceMotion.attitude
+        let rotation = motion.attitude
         if rotation.pitch > 1.4 && rotation.pitch < 1.57 {
             print("Phone lifted off the table")
         }
@@ -69,7 +92,7 @@ class ViewController: UIViewController {
         else if acceleration.y >= 1.0 {
             var gyro = CMRotationRate()
             if self.motionManager.isGyroAvailable {
-                gyro = deviceMotion.rotationRate
+                gyro = motion.rotationRate
                 print(String(format:"Rotation Rate Z: %7.4f",gyro.z))
             } else {
                 print("Gyro not available")

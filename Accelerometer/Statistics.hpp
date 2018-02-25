@@ -15,7 +15,8 @@
 class CPP {
     public:
     void hello_cpp(const std::string& name);
-    void func();
+    template <int N>
+    double mean_array( double ( & array )[N]);
 };
 
 #endif /* Statistics_hpp */
