@@ -24,51 +24,13 @@ public enum Motion {
 class ViewController: UIViewController {
 
     let motionManager = CMMotionManager()
-    let interval = 0.5
+    let interval = 1.0 / 20.0  // 20 Hz
     var timer = Timer()
-    let altimeter = CMAltimeter()
-    var altitude: CMAltitudeData?
-    var first = true
-    var firstPressure = 0.0
-    let motionActivityManager = CMMotionActivityManager()
-    var isSafe = true
+    let cppWrapper = CPP_Wrapper()
     
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var magneticLabel: UILabel!
-    
-    func startSafetyCheck() {
-        if CMMotionActivityManager.isActivityAvailable() {
-            let queue = OperationQueue()
-            motionActivityManager.startActivityUpdates(to: queue, withHandler: { (motionActivity) in
-                if let activity = motionActivity {
-                    switch activity.confidence {
-                    case .high:
-                        fallthrough
-                    case .medium:
-                        print("High Confidence")
-                        self.isSafe = !activity.running
-                    case .low:
-                        break
-                    }
-                }
-            })
-        }
-    }
-    
-    func safetyCheck() {
-        if !isSafe {
-            timer.invalidate()
-            print("Running not allowed")
-            let alert = UIAlertController(title: "DON'T RUN", message: "Running is not allowed", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "ok", style: .default, handler: { (action) in
-                self.isSafe = true
-                self.startTimer()
-            })
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
-        }
-    }
     
     func isSensorAvailable() -> Bool {
         if !motionManager.isAccelerometerAvailable {
@@ -81,17 +43,9 @@ class ViewController: UIViewController {
 
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true, block: { (timer) in
-            self.safetyCheck()
             if let deviceMotion = self.motionManager.deviceMotion {
                 self.detectMotion(deviceMotion)
             }
-            if self.motionManager.isMagnetometerActive {
-                if let field = self.motionManager.magnetometerData?.magneticField {
-                    self.magneticLabel.text = String(format:"Raw X:%10.4f Y:%10.4f Z:%10.4f", field.x, field.y, field.z)
-                }
-            }
-            self.updateAltitude()
-            print("Raw Magnetometer not active")
         })
     }
     
@@ -133,41 +87,6 @@ class ViewController: UIViewController {
         }
     }
     
-    func monitorMagneticFields() {
-        if motionManager.isMagnetometerAvailable {
-            motionManager.magnetometerUpdateInterval = interval
-            motionManager.startMagnetometerUpdates()
-        } else {
-            print("Magnetometer not available")
-        }
-    }
-    
-    func monitorAltitude() {
-        if CMAltimeter.isRelativeAltitudeAvailable() {
-            let queue = OperationQueue()
-            altimeter.startRelativeAltitudeUpdates(to: queue, withHandler: { (altitude, error) in
-                if let altitude = altitude {
-                    self.altitude = altitude
-                }
-            })
-        } else {
-            print("Altimeter not available")
-        }
-    }
-    
-    func updateAltitude() {
-        if CMAltimeter.isRelativeAltitudeAvailable() {
-            if let altitude = self.altitude {
-                let pressure = Double(truncating: altitude.pressure)
-                let relativeAlitude = Double(truncating: altitude.relativeAltitude)
-                firstPressure = first ? pressure : firstPressure
-                first = false
-                let pressureChange = firstPressure - pressure
-                self.altitudeLabel.text = "Pressure Change: \(pressureChange), Altitude Change: \(relativeAlitude)"
-            }
-        }
-    }
-    
     func monitorDeviceMotion() {
         motionManager.deviceMotionUpdateInterval = interval
         motionManager.startDeviceMotionUpdates()
@@ -178,9 +97,6 @@ class ViewController: UIViewController {
         if isSensorAvailable() {
             startTimer()
             monitorDeviceMotion()
-            monitorAltitude()
-            monitorMagneticFields()
-            startSafetyCheck()
             print("Core Motion Launched")
         }
     }
@@ -189,13 +105,12 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
         timer.invalidate()
         motionManager.stopDeviceMotionUpdates()
-        altimeter.stopRelativeAltitudeUpdates()
-        motionManager.stopMagnetometerUpdates()
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cppWrapper.hello_cpp_wrapped("World")
     }
 
     override func didReceiveMemoryWarning() {
