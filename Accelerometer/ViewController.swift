@@ -27,10 +27,44 @@ class ViewController: UIViewController {
     let interval = 0.5
     var timer = Timer()
     let altimeter = CMAltimeter()
+    let motionActivityManager = CMMotionActivityManager()
+    var isSafe = true
     
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var magneticLabel: UILabel!
+    
+    func startSafetyCheck() {
+        if CMMotionActivityManager.isActivityAvailable() {
+            motionActivityManager.startActivityUpdates(to: OperationQueue.main, withHandler: { (motionActivity) in
+                if let activity = motionActivity {
+                    switch activity.confidence {
+                    case .high:
+                        fallthrough
+                    case .medium:
+                        print("High Confidence")
+                        self.isSafe = !activity.running
+                    case .low:
+                        break
+                    }
+                }
+            })
+        }
+    }
+    
+    func safetyCheck() {
+        if !isSafe {
+            timer.invalidate()
+            print("Running not allowed")
+            let alert = UIAlertController(title: "DON'T RUN", message: "Running is not allowed", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "ok", style: .default, handler: { (action) in
+                self.isSafe = true
+                self.startTimer()
+            })
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
+    }
     
     func isSensorAvailable() -> Bool {
         if !motionManager.isAccelerometerAvailable {
@@ -43,6 +77,7 @@ class ViewController: UIViewController {
 
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true, block: { (timer) in
+            self.safetyCheck()
             if let deviceMotion = self.motionManager.deviceMotion {
                 self.detectMotion(deviceMotion)
             }
@@ -126,15 +161,16 @@ class ViewController: UIViewController {
     func monitorDeviceMotion() {
         motionManager.deviceMotionUpdateInterval = interval
         motionManager.startDeviceMotionUpdates()
-        startTimer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if isSensorAvailable() {
+            startTimer()
             monitorDeviceMotion()
             monitorAltitude()
             monitorMagneticFields()
+            startSafetyCheck()
             print("Core Motion Launched")
         }
     }
