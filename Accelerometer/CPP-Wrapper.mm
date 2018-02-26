@@ -18,8 +18,8 @@ CPP cpp;
     cpp.hello_cpp([name cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-- (double)mean_array_wrapped:(double[])array {
-    return 0.0;
+- (double)mean_array_wrapped:(double[])array count:(int)count {
+    return cpp.mean_array(array, count);
 }
 
 

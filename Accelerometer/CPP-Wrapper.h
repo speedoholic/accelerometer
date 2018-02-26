@@ -11,5 +11,5 @@
 
 @interface CPP_Wrapper : NSObject
 - (void)hello_cpp_wrapped:(NSString *)name;
-- (double)mean_array_wrapped:(double[])array;
+- (double)mean_array_wrapped:(double[])array count:(int)count;
 @end

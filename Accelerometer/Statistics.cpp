@@ -13,10 +13,17 @@ using namespace std;
 void CPP::hello_cpp(const std::string& name) {
     cout << "Hello " << name << " in C++" << endl;
 }
-template <int N>
-double CPP::mean_array( double ( & array )[N] )
+double CPP::mean_array( double *array, size_t count )
 {
-    return std::accumulate( array, array + N, 0.0) / (double)(N);
+    double sum = std::accumulate(array,array+count,0.0);
+    return sum / count;
+}
+void CPP::test()
+{
+    double array[3] = {1.0,2.0,3.0};
+    int count = sizeof(array)/sizeof(double);
+    double result = mean_array(array, count);
+    cout << "Mean result: " << result << "\n";
 }
 
 

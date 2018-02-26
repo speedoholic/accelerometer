@@ -23,6 +23,8 @@ public enum Motion {
 
 class ViewController: UIViewController {
 
+    //MARK: Class Properties
+    
     let motionManager = CMMotionManager()
     var motion = CMDeviceMotion()
     let interval = 1.0 / 20.0  // 20 Hz
@@ -34,6 +36,8 @@ class ViewController: UIViewController {
     var yArray = [Double]()
     var zArray = [Double]()
     
+    //MARK: Outlets
+    
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var maxLabel: UILabel!
     @IBOutlet weak var minLabel: UILabel!
@@ -42,6 +46,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var deviationLabel: UILabel!
     
     
+    /// Checks if the user's device has the required sensors or not
+    ///
+    /// - Returns: Boolean indicating if sensor is available of not
     func isSensorAvailable() -> Bool {
         if !motionManager.isAccelerometerAvailable {
             let alert = UIAlertController(title: "Not Supported", message: "This device is not supported. Please try using another device with accelerometer", preferredStyle: .alert)
@@ -51,6 +58,8 @@ class ViewController: UIViewController {
         return motionManager.isAccelerometerAvailable
     }
 
+    
+    /// Start the timer which repeats as per the mentioned interval
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true, block: { (timer) in
             if let deviceMotion = self.motionManager.deviceMotion {
@@ -59,17 +68,31 @@ class ViewController: UIViewController {
             }
         })
         secondaryTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
-            self.countLabel.text = String(format:"COUNT X:%4.2f Y:%4.2f Z:%4.2f",self.xArray.count, self.yArray.count, self.zArray.count)
+            self.countLabel.text = String(format:"COUNT X:%i Y:%i Z:%i",self.xArray.count, self.yArray.count, self.zArray.count)
             self.maxLabel.text = String(format:"MAX X:%4.2f Y:%4.2f Z:%4.2f",self.xArray.max()!, self.yArray.max()!, self.zArray.max()!)
             self.minLabel.text = String(format:"MIN X:%4.2f Y:%4.2f Z:%4.2f",self.xArray.min()!, self.yArray.min()!, self.zArray.min()!)
+            self.meanLabel.text = String(format:"MEAN X:%4.2f Y:%4.2f Z:%4.2f",self.calculateMean(self.xArray), self.calculateMean(self.yArray), self.calculateMean(self.zArray))
             
-            
+            //Reset arrays
             self.xArray = [Double]()
             self.yArray = [Double]()
             self.zArray = [Double]()
         })
     }
     
+    
+    /// Calculates mean of the values passed in an array
+    ///
+    /// - Parameter array: array of value for which mean is to be calculated
+    /// - Returns: calculated mean value
+    func calculateMean(_ array: [Double]) -> Double {
+        let arrayPointer = UnsafeMutablePointer(mutating: array)
+        let intCount = Int32(array.count)
+        return cppWrapper.mean_array_wrapped(arrayPointer, count: intCount)
+    }
+    
+    
+    /// Called by timer to detect the motion type based on device's acceleration
     func detectMotion() {
         let acceleration = self.motion.userAcceleration
         accDictionary = ["date":Date().timeIntervalSince1970, "x":acceleration.x, "y":acceleration.y, "z":acceleration.z]
@@ -110,10 +133,14 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    /// Configures motion manager to start monitoring for updates
     func monitorDeviceMotion() {
         motionManager.deviceMotionUpdateInterval = interval
         motionManager.startDeviceMotionUpdates()
     }
+
+    //MARK: View Life Cycle
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -124,23 +151,21 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        cppWrapper.hello_cpp_wrapped("World")
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer.invalidate()
         motionManager.stopDeviceMotionUpdates()
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        cppWrapper.hello_cpp_wrapped("World")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 
