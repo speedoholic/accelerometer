@@ -1,0 +1,6 @@
+framework module Pods_AccelerometerTests {
+  umbrella header "Pods-AccelerometerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

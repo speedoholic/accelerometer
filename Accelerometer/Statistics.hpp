@@ -15,8 +15,11 @@
 class CPP {
     public:
     void hello_cpp(const std::string& name);
-    double mean_array( double *array, size_t count );
-    void test();
+    double min_array(const double *array, size_t count);
+    double max_array(const double *array, size_t count);
+    double mean_array(const double *array, size_t count);
+    double median_array(double *array, size_t size);
+    double stdev_array(const double *a, const double mean, size_t size);
 };
 
 #endif /* Statistics_hpp */

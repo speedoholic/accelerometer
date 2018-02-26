@@ -14,8 +14,13 @@
 		2B111E81204241B5003175D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B111E7F204241B5003175D1 /* LaunchScreen.storyboard */; };
 		2B111E8C204241B5003175D1 /* AccelerometerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B111E8B204241B5003175D1 /* AccelerometerTests.swift */; };
 		2B111E97204241B6003175D1 /* AccelerometerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B111E96204241B6003175D1 /* AccelerometerUITests.swift */; };
+		2B329C1A2044737900936CDF /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B329C192044737900936CDF /* RealmHelper.swift */; };
+		2B329C232044741F00936CDF /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B329C222044741E00936CDF /* Data.swift */; };
 		2B385C2220430ECB008AE2A9 /* Statistics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B385C2020430ECB008AE2A9 /* Statistics.cpp */; };
 		2B385C25204310C6008AE2A9 /* CPP-Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B385C24204310C6008AE2A9 /* CPP-Wrapper.mm */; };
+		784362D67B6D3F280631F797 /* Pods_Accelerometer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EDC420DD1D94A2895B8043 /* Pods_Accelerometer.framework */; };
+		B02CB70F8AF8F686F786FA51 /* Pods_AccelerometerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B429425CBE196D9B270467 /* Pods_AccelerometerTests.framework */; };
+		FE46CA1135C2758B5DC2481F /* Pods_AccelerometerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47DAD96C06142392BD5BD5D /* Pods_AccelerometerUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,11 +54,22 @@
 		2B111E92204241B5003175D1 /* AccelerometerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccelerometerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B111E96204241B6003175D1 /* AccelerometerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerUITests.swift; sourceTree = "<group>"; };
 		2B111E98204241B6003175D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B329C192044737900936CDF /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
+		2B329C222044741E00936CDF /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		2B385C1F20430ECB008AE2A9 /* Accelerometer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Accelerometer-Bridging-Header.h"; sourceTree = "<group>"; };
 		2B385C2020430ECB008AE2A9 /* Statistics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Statistics.cpp; sourceTree = "<group>"; };
 		2B385C2120430ECB008AE2A9 /* Statistics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Statistics.hpp; sourceTree = "<group>"; };
 		2B385C23204310C6008AE2A9 /* CPP-Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CPP-Wrapper.h"; sourceTree = "<group>"; };
 		2B385C24204310C6008AE2A9 /* CPP-Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "CPP-Wrapper.mm"; sourceTree = "<group>"; };
+		3109AB94B7B97E867A07AE83 /* Pods-AccelerometerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccelerometerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccelerometerUITests/Pods-AccelerometerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6280CAA31F9BED90D1A92F5F /* Pods-AccelerometerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccelerometerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccelerometerUITests/Pods-AccelerometerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		679B8599D6544888F825B529 /* Pods-AccelerometerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccelerometerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccelerometerTests/Pods-AccelerometerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		857B8DCC33DB1F62BA86DF9E /* Pods-Accelerometer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Accelerometer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Accelerometer/Pods-Accelerometer.release.xcconfig"; sourceTree = "<group>"; };
+		9F5C6B583F43F6E4109B52B3 /* Pods-AccelerometerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccelerometerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccelerometerTests/Pods-AccelerometerTests.release.xcconfig"; sourceTree = "<group>"; };
+		C9B429425CBE196D9B270467 /* Pods_AccelerometerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AccelerometerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E47DAD96C06142392BD5BD5D /* Pods_AccelerometerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AccelerometerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E57A3E295A59F61E314C8AF5 /* Pods-Accelerometer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Accelerometer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Accelerometer/Pods-Accelerometer.debug.xcconfig"; sourceTree = "<group>"; };
+		F3EDC420DD1D94A2895B8043 /* Pods_Accelerometer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Accelerometer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784362D67B6D3F280631F797 /* Pods_Accelerometer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02CB70F8AF8F686F786FA51 /* Pods_AccelerometerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,12 +93,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE46CA1135C2758B5DC2481F /* Pods_AccelerometerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1191840E2A203090C2506E82 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3EDC420DD1D94A2895B8043 /* Pods_Accelerometer.framework */,
+				C9B429425CBE196D9B270467 /* Pods_AccelerometerTests.framework */,
+				E47DAD96C06142392BD5BD5D /* Pods_AccelerometerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1B7D653133A9AAAEB22F3D7A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E57A3E295A59F61E314C8AF5 /* Pods-Accelerometer.debug.xcconfig */,
+				857B8DCC33DB1F62BA86DF9E /* Pods-Accelerometer.release.xcconfig */,
+				679B8599D6544888F825B529 /* Pods-AccelerometerTests.debug.xcconfig */,
+				9F5C6B583F43F6E4109B52B3 /* Pods-AccelerometerTests.release.xcconfig */,
+				6280CAA31F9BED90D1A92F5F /* Pods-AccelerometerUITests.debug.xcconfig */,
+				3109AB94B7B97E867A07AE83 /* Pods-AccelerometerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		2B111E6A204241B5003175D1 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +130,8 @@
 				2B111E8A204241B5003175D1 /* AccelerometerTests */,
 				2B111E95204241B6003175D1 /* AccelerometerUITests */,
 				2B111E74204241B5003175D1 /* Products */,
+				1B7D653133A9AAAEB22F3D7A /* Pods */,
+				1191840E2A203090C2506E82 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +155,8 @@
 				2B385C1F20430ECB008AE2A9 /* Accelerometer-Bridging-Header.h */,
 				2B111E76204241B5003175D1 /* AppDelegate.swift */,
 				2B111E78204241B5003175D1 /* ViewController.swift */,
+				2B329C192044737900936CDF /* RealmHelper.swift */,
+				2B329C222044741E00936CDF /* Data.swift */,
 				2B111E7A204241B5003175D1 /* Main.storyboard */,
 				2B111E7D204241B5003175D1 /* Assets.xcassets */,
 				2B111E7F204241B5003175D1 /* LaunchScreen.storyboard */,
@@ -144,9 +190,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B111E9B204241B6003175D1 /* Build configuration list for PBXNativeTarget "Accelerometer" */;
 			buildPhases = (
+				69597B52BB4105B14A071686 /* [CP] Check Pods Manifest.lock */,
 				2B111E6F204241B5003175D1 /* Sources */,
 				2B111E70204241B5003175D1 /* Frameworks */,
 				2B111E71204241B5003175D1 /* Resources */,
+				7AD1455F75A2E4FD9612C142 /* [CP] Embed Pods Frameworks */,
+				1EC278B4D45F81AD345B8B35 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,9 +210,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B111E9E204241B6003175D1 /* Build configuration list for PBXNativeTarget "AccelerometerTests" */;
 			buildPhases = (
+				22434246C6AB871EF7FB6D41 /* [CP] Check Pods Manifest.lock */,
 				2B111E83204241B5003175D1 /* Sources */,
 				2B111E84204241B5003175D1 /* Frameworks */,
 				2B111E85204241B5003175D1 /* Resources */,
+				296B2C21DE5E5B8685CC5840 /* [CP] Embed Pods Frameworks */,
+				E6F42A74F9906AE26EB2A450 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,9 +231,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B111EA1204241B6003175D1 /* Build configuration list for PBXNativeTarget "AccelerometerUITests" */;
 			buildPhases = (
+				336DD43210AAC2027BDEE85F /* [CP] Check Pods Manifest.lock */,
 				2B111E8E204241B5003175D1 /* Sources */,
 				2B111E8F204241B5003175D1 /* Frameworks */,
 				2B111E90204241B5003175D1 /* Resources */,
+				9F77AD5FCBC502FE78F158AE /* [CP] Embed Pods Frameworks */,
+				2D66CCFEB7DF2020EAFB8E92 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -267,14 +322,168 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1EC278B4D45F81AD345B8B35 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Accelerometer/Pods-Accelerometer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		22434246C6AB871EF7FB6D41 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AccelerometerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		296B2C21DE5E5B8685CC5840 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccelerometerTests/Pods-AccelerometerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D66CCFEB7DF2020EAFB8E92 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccelerometerUITests/Pods-AccelerometerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		336DD43210AAC2027BDEE85F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AccelerometerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69597B52BB4105B14A071686 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Accelerometer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7AD1455F75A2E4FD9612C142 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Accelerometer/Pods-Accelerometer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Accelerometer/Pods-Accelerometer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F77AD5FCBC502FE78F158AE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccelerometerUITests/Pods-AccelerometerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6F42A74F9906AE26EB2A450 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccelerometerTests/Pods-AccelerometerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2B111E6F204241B5003175D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2B385C2220430ECB008AE2A9 /* Statistics.cpp in Sources */,
+				2B329C1A2044737900936CDF /* RealmHelper.swift in Sources */,
 				2B111E79204241B5003175D1 /* ViewController.swift in Sources */,
 				2B111E77204241B5003175D1 /* AppDelegate.swift in Sources */,
+				2B329C232044741F00936CDF /* Data.swift in Sources */,
 				2B385C25204310C6008AE2A9 /* CPP-Wrapper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,12 +648,14 @@
 		};
 		2B111E9C204241B6003175D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E57A3E295A59F61E314C8AF5 /* Pods-Accelerometer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95LYYRS5E7;
 				INFOPLIST_FILE = Accelerometer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = speedoholic.Accelerometer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -457,12 +668,14 @@
 		};
 		2B111E9D204241B6003175D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 857B8DCC33DB1F62BA86DF9E /* Pods-Accelerometer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95LYYRS5E7;
 				INFOPLIST_FILE = Accelerometer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = speedoholic.Accelerometer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -474,6 +687,7 @@
 		};
 		2B111E9F204241B6003175D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 679B8599D6544888F825B529 /* Pods-AccelerometerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +705,7 @@
 		};
 		2B111EA0204241B6003175D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F5C6B583F43F6E4109B52B3 /* Pods-AccelerometerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +723,7 @@
 		};
 		2B111EA2204241B6003175D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6280CAA31F9BED90D1A92F5F /* Pods-AccelerometerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -524,6 +740,7 @@
 		};
 		2B111EA3204241B6003175D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3109AB94B7B97E867A07AE83 /* Pods-AccelerometerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
